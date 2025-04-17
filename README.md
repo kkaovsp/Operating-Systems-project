@@ -1,4 +1,4 @@
-```markdown
+
 # Real-Time Facial Emotion Detection using YOLOv8 + System Performance Monitoring
 
 This project implements a real-time facial emotion detection system using **YOLOv8** combined with **system performance monitoring tools** such as `psutil`, `torch`, and `OpenCV`. It runs on both **CPU and GPU** environments and compares their performance in terms of **FPS, CPU usage, memory usage, and GPU memory (if applicable)**.
@@ -24,12 +24,12 @@ This project was developed as part of an Operating Systems coursework to:
 ├── diagrams/
 │   └── architecture.png       # Architecture overview image
 ├── README.md                  # You're here!
-```
+
 
 ---
 
 ## 🧠 Architecture Diagram
-
+```
 +---------------+         +---------------------+         +------------------+
 |   Webcam /    |  --->   |  YOLOv8 Inference   |  --->   |  Annotated Frame |
 |   Video File  |         |     (CPU / GPU)     |         |   + Performance  |
@@ -39,7 +39,7 @@ This project was developed as part of an Operating Systems coursework to:
                            +----------------------+
                            |  System Stats (CSV)  |
                            +----------------------+
-
+```
 - The diagram shows the data flow from **camera/video input → YOLOv8 model → annotated output**.
 - System stats are gathered using `psutil` and overlaid on the output or logged in CSV.
 
@@ -64,6 +64,7 @@ This project was developed as part of an Operating Systems coursework to:
 🔧 Running on: cuda
 CPU: 45.2% RAM: 58.7% FPS: 24.1 GPU Mem: 212.3 MB
 ```
+![image](https://github.com/user-attachments/assets/8b4835b5-d929-40e8-8349-872bd1fcbf11)
 
 ### Code Highlights
 
