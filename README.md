@@ -24,12 +24,12 @@ This project was developed as part of an Operating Systems coursework to:
 ├── diagrams/
 │   └── architecture.png       # Architecture overview image
 ├── README.md                  # You're here!
-
+```
 
 ---
 
 ## 🧠 Architecture Diagram
-
+```bash
 +---------------+         +---------------------+         +------------------+
 |   Webcam /    |  --->   |  YOLOv8 Inference   |  --->   |  Annotated Frame |
 |   Video File  |         |     (CPU / GPU)     |         |   + Performance  |
@@ -45,7 +45,7 @@ This project was developed as part of an Operating Systems coursework to:
 
 ---
 
-## 🖥️ Code 1: Real-Time Detection from Webcam (`real_time_webcam.py`)
+## 🖥️ Code 1: Real-Time Detection from Webcam (`main.py`)
 
 ### Description
 - Uses OpenCV to open webcam.
