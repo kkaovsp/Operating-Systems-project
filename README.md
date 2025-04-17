@@ -29,7 +29,7 @@ This project was developed as part of an Operating Systems coursework to:
 ---
 
 ## 🧠 Architecture Diagram
-```
+
 +---------------+         +---------------------+         +------------------+
 |   Webcam /    |  --->   |  YOLOv8 Inference   |  --->   |  Annotated Frame |
 |   Video File  |         |     (CPU / GPU)     |         |   + Performance  |
