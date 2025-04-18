@@ -32,13 +32,13 @@ This project was developed as part of an Operating Systems coursework to:
 ```bash
 +---------------+         +---------------------+         +------------------+
 |   Webcam /    |  --->   |  YOLOv8 Inference   |  --->   |  Annotated Frame |
-|   Video File  |         |     (CPU / GPU)     |         |   + Performance  |
+|   Video File  |         |     (CPU / GPU)     |  <---   |   + Performance  |
 +---------------+         +---------------------+         +------------------+
                                      |
                                      v
-                           +----------------------+
-                           |  System Stats (CSV)  |
-                           +----------------------+
+                   +-----------------------------------------+
+                   |  System Stats (CSV) and display output  |
+                   +-----------------------------------------+
 ```
 - The diagram shows the data flow from **camera/video input → YOLOv8 model → annotated output**.
 - System stats are gathered using `psutil` and overlaid on the output or logged in CSV.
