@@ -13,21 +13,6 @@ This project was developed as part of an Operating Systems coursework to:
 
 ---
 
-## 📁 Project Structure
-
-```bash
-📦 OS-RealTime-YOLOv8
-├── real_time_webcam.py        # Real-time detection using webcam
-├── colab_video_csv_logger.py  # Offline video processing on Colab and save stats to CSV
-├── runs/                      # YOLO training logs and weights (output folder)
-├── weights/                   # Pretrained weights (e.g., best.pt from Roboflow)
-├── diagrams/
-│   └── architecture.png       # Architecture overview image
-├── README.md                  # You're here!
-```
-
----
-
 ## 🧠 Architecture Diagram
 ```bash
 +---------------+         +---------------------+         +------------------+
@@ -74,10 +59,39 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 cpu_percent = psutil.cpu_percent()
 fps = 1 / (time.time() - start_time)
 ```
+#### Convert to RGB for YOLO
+```python
+rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+```
 
+#### Run YOLO prediction
+```python
+results = model.predict(rgb_frame, device=0 if torch.cuda.is_available() else "cpu", verbose=False)
+```
+
+#### Annotate detections
+```python
+annotated_frame = results[0].plot()
+bgr_frame = cv2.cvtColor(annotated_frame, cv2.COLOR_RGB2BGR)
+```
+
+#### System stats
+```python
+cpu_percent = psutil.cpu_percent()
+ram_percent = psutil.virtual_memory().percent
+fps = 1 / (time.time() - start_time)
+```
+
+#### Apple GPU or GPU CUDA (if any)
+```python
+if torch.cuda.is_available():
+  gpu_mem = torch.cuda.memory_allocated() / 1024**2  # MB
+else:
+  gpu_mem = 0  # macOS Metal GPU is not shown via PyTorch
+```
 ---
 
-## 🧪 Code 2: Offline Video Analysis on Google Colab (`colab_video_csv_logger.py`)
+## 🧪 Code 2: Offline Video Analysis on Google Colab (`Create_CSV_from_CPU_and_GPU.ipynb`)
 
 ### Description
 - Loads pre-recorded video (e.g., `.MOV`, `.mp4`).
@@ -135,7 +149,7 @@ Make sure `best.pt` is in the `weights/` folder.
 
 ---
 
-## 📊 Performance Comparison Summary
+## 📊 Performance Comparison Summary and Use in projects
 
 | Platform           | FPS   | CPU%   | RAM%   | GPU Mem |
 |-------------------|-------|--------|--------|----------|
