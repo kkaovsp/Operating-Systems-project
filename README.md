@@ -103,6 +103,24 @@ else:
 - Helpful for environments where live webcam is not available (like Google Colab).
 - Useful for running performance comparisons between CPU and GPU.
 
+### Upload file
+```python
+uploaded = files.upload()
+```
+
+### CPU working
+```python
+cpu_csv = run_yolo_on_video("cpu", max_frames=100)
+files.download(cpu_csv)
+```
+
+### GPU working
+##### Click Runtime > Change runtime type > GPU
+```python
+gpu_csv = run_yolo_on_video("GPU", max_frames=100)
+files.download(gpu_csv)
+```
+
 ### Output
 - Two CSV files:
   - `stats_cpu_YYYYMMDD_HHMMSS.csv`
