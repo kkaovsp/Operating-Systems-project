@@ -155,18 +155,6 @@ Make sure `best.pt` is in the `weights/` folder.
 
 ---
 
-## ⚙️ System Requirements
-
-| Component | Required |
-|----------|----------|
-| Python   | 3.8+     |
-| Torch    | 2.0+     |
-| OpenCV   | ✅       |
-| GPU (Optional) | NVIDIA CUDA for acceleration |
-| OS       | Windows, macOS (M1/M2), or Linux |
-
----
-
 ## 📊 Performance Comparison Summary and Use in projects
 
 | Platform           | FPS   | CPU%   | RAM%   | GPU Mem |
@@ -176,28 +164,4 @@ Make sure `best.pt` is in the `weights/` folder.
 | Google Colab (GPU)| 20–30 | Low    | Low    | ✅ 100–300MB |
 | Windows + NVIDIA  | 25–35 | Low    | Low    | ✅ CUDA |
 
----
 
-## 💡 Trade-Offs
-
-- **YOLOv8** was chosen over traditional ML models like Random Forest for superior real-time performance.
-- **Colab** was used for GPU testing since macOS lacks CUDA.
-- **Real-time webcam detection** only feasible on local systems with GPU access.
-
----
-
-## 🧼 Clean Code Practices
-
-- Functions are modularized and separated (e.g., video reading, YOLO inference, stats logging).
-- Error handling for missing frames or webcam failure.
-- Code is commented thoroughly for educational readability.
-
----
-
-## 📌 Future Improvements
-
-- Add head pose and facial landmark detection.
-- Automatically optimize image brightness/contrast for low light.
-- Expand dataset with more emotions and edge cases.
-
----
