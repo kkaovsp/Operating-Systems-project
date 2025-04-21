@@ -1,4 +1,3 @@
-![FPS on CPU and GPU Usage Over Time](https://github.com/user-attachments/assets/c61c16b7-a3ee-4ac7-996f-cb3ca0f3b949)
 # Real-Time Facial Emotion Detection using YOLOv8 + System Performance Monitoring
 
 This project implements a real-time facial emotion detection system using **YOLOv8** combined with **system performance monitoring tools** such as `psutil`, `torch`, and `OpenCV`. It runs on both **CPU and GPU** environments and compares their performance in terms of **FPS, CPU usage, memory usage, and GPU memory (if applicable)**.
