@@ -1,4 +1,4 @@
-
+![FPS on CPU and GPU Usage Over Time](https://github.com/user-attachments/assets/c61c16b7-a3ee-4ac7-996f-cb3ca0f3b949)
 # Real-Time Facial Emotion Detection using YOLOv8 + System Performance Monitoring
 
 This project implements a real-time facial emotion detection system using **YOLOv8** combined with **system performance monitoring tools** such as `psutil`, `torch`, and `OpenCV`. It runs on both **CPU and GPU** environments and compares their performance in terms of **FPS, CPU usage, memory usage, and GPU memory (if applicable)**.
@@ -126,6 +126,10 @@ files.download(gpu_csv)
   - `stats_cpu_YYYYMMDD_HHMMSS.csv`
   - `stats_gpu_YYYYMMDD_HHMMSS.csv`
 
+### FBS Comparison between CPU and GPU, running on Google Colab
+**The graph shows that the GPU performs better.**
+![FPS on CPU and GPU Usage Over Time](https://github.com/user-attachments/assets/455e0893-9cb6-4245-8f3b-826179fa3de4)
+
 ### Code Snippet
 
 ```python
@@ -144,7 +148,7 @@ pip install ultralytics opencv-python psutil torch
 python real_time_webcam.py
 ```
 
-Make sure `best.pt` is in the `weights/` folder.
+Make sure `best.pt`
 
 ### ☁️ On Google Colab
 
