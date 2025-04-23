@@ -88,6 +88,7 @@ if torch.cuda.is_available():
 else:
   gpu_mem = 0  # macOS Metal GPU is not shown via PyTorch
 ```
+
 ---
 
 ## 🧪 Code 2: Offline Video Analysis on Google Colab (`Create_CSV_from_CPU_and_GPU.ipynb`)
@@ -133,20 +134,22 @@ files.download(gpu_csv)
 
 ## 🚀 How to Run
 
-### 🧑‍💻 Real-Time Webcam (Desktop)
+### 🧑‍💻 Real-Time Webcam main.py on Desktop or vscode
 
 ```bash
-pip install ultralytics opencv-python psutil torch
-python real_time_webcam.py
-```
+pip install opencv-python
+pip install torch
+pip install psutil
+pip install ultralytics
 
-Make sure `best.pt`
+```
+Make sure have `best.pt`
 
 ### ☁️ On Google Colab
 
 1. Upload your video and model weights to Google Drive.
 2. Mount Google Drive in Colab.
-3. Copy the `colab_video_csv_logger.py` code and run it.
+3. Paste the `Create_CSV_from_CPU_and_GPU.ipynb` code and run it.
 4. CSV files will be downloaded after execution.
 
 ---
