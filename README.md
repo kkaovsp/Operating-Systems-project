@@ -129,13 +129,6 @@ files.download(gpu_csv)
 **The graph shows that the GPU performs better.**
 ![FPS on CPU and GPU Usage Over Time](https://github.com/user-attachments/assets/455e0893-9cb6-4245-8f3b-826179fa3de4)
 
-### Code Snippet
-
-```python
-writer.writerow(["Frame", "FPS", "CPU_Usage", "RAM_Usage", "GPU_Memory_MB"])
-gpu_mem = torch.cuda.memory_allocated() / 1024**2 if torch.cuda.is_available() else 0
-```
-
 ---
 
 ## 🚀 How to Run
