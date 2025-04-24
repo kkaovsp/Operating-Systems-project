@@ -14,15 +14,36 @@ This project was developed as part of an Operating Systems coursework to:
 
 ## 🧠 Architecture Diagram
 ```bash
-+---------------+         +---------------------+         +------------------+
-|   Webcam /    |  --->   |  YOLOv8 Inference   |  --->   |  Annotated Frame |
-|   Video File  |         |     (CPU / GPU)     |  <---   |   + Performance  |
-+---------------+         +---------------------+         +------------------+
-                                     |
-                                     v
-                   +-----------------------------------------+
-                   |  System Stats (CSV) and display output  |
-                   +-----------------------------------------+
++------------------------+       +-------------------------+
+|  Face Dataset (Images) | ----> | YOLOv8 Training Script  |
++------------------------+       +-------------------------+
+                                         |
+                                         v
+                              +------------------------+
+                              | Trained YOLOv8 Model   |
+                              +------------------------+
+                                         |
+                                         v
+  +---------------------+       +------------------------------+
+  | Video Input Source  | ----> | Real-Time Detection Pipeline |
+  | (Webcam/Stream)     |       | (OpenCV + YOLOv8 + Ultralytics) |
+  +---------------------+       +------------------------------+
+                                         |
+                      +------------------+------------------+
+                      |                                     |
+                      v                                     v
+     +-----------------------------+       +------------------------------+
+     | Draw Bounding Boxes on Feed|       | Monitor System Stats in Real |
+     | (Face Detection + FPS)     |       | Time (CPU, GPU, MEM, FPS)    |
+     +-----------------------------+       +------------------------------+
+                      |                                     |
+                      +------------------+------------------+
+                                         |
+                                         v
+                   +---------------------------------------------+
+                   | Display UI / Dashboard / System Stats (CSV) |
+                   +---------------------------------------------+
+
 ```
 - The diagram shows the data flow from **camera/video input → YOLOv8 model → annotated output**.
 - System stats are gathered using `psutil` and overlaid on the output or logged in CSV.
