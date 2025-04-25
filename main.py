@@ -25,6 +25,10 @@ while True:
     # Convert to RGB for YOLO
     rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
+    # Convert to Grayscale for YOLO
+    # gray_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    # rgb_frame = cv2.merge([gray_frame, gray_frame, gray_frame])
+
     # Run YOLO prediction
     results = model.predict(rgb_frame, device=0 if torch.cuda.is_available() else "cpu", verbose=False)
     
