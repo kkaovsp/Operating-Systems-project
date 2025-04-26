@@ -234,7 +234,7 @@ cv2.destroyAllWindows()
 ## 🔥🔥 Second code is `Create_CSV_from_CPU_and_GPU.ipynb` , This code for create the csv file of resource usage.
 
 ---
-# 📘 Tutorial: Batch YOLOv8 Video Inference with CPU/GPU Resource Monitoring
+## 📘 Tutorial: Batch YOLOv8 Video Inference with CPU/GPU Resource Monitoring
 
 This guide explains how to use the provided script to **analyze a video file frame-by-frame** using **YOLOv8**, while **logging system performance metrics** (CPU, RAM, GPU memory) to a CSV file for later analysis.
 
@@ -398,12 +398,16 @@ files.download(gpu_csv)
   - `stats_cpu_YYYYMMDD_HHMMSS.csv`
   - `stats_gpu_YYYYMMDD_HHMMSS.csv`
 
+---
 ### FBS Comparison between CPU and GPU, running on Google Colab
 **The graph shows that the GPU performs better.**
 ![FPS on CPU and GPU Usage Over Time](https://github.com/user-attachments/assets/455e0893-9cb6-4245-8f3b-826179fa3de4)
 
 ---
-
+### FBS Comparison between CPU and GPU, running on Google Colab with Grayscale color mode
+**The graph shows that the Grayscale performs of FBS is better than RGB of processing.**
+![FBS Over Time with 2 color model](https://github.com/user-attachments/assets/bbf6666b-abfe-4400-bcb1-5f17734808a1)
+---
 ## 🚀 How to Run
 
 ### 🧑‍💻 Real-Time Webcam main.py on Desktop or vscode
