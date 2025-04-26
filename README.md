@@ -231,24 +231,168 @@ cv2.destroyAllWindows()
 - Helpful for environments where live webcam is not available (like Google Colab).
 - Useful for running performance comparisons between CPU and GPU.
 
-### Code Upload file
-```python
-uploaded = files.upload()
+## 🔥🔥 Second code is `Create_CSV_from_CPU_and_GPU.ipynb` , This code for create the csv file of resource usage.
+
+---
+# 📘 Tutorial: Batch YOLOv8 Video Inference with CPU/GPU Resource Monitoring
+
+This guide explains how to use the provided script to **analyze a video file frame-by-frame** using **YOLOv8**, while **logging system performance metrics** (CPU, RAM, GPU memory) to a CSV file for later analysis.
+
+---
+
+## 1. 🛠️ Requirements
+
+Install the necessary Python libraries:
+
+```bash
+pip install ultralytics
+pip install opencv-python
+pip install psutil
+torch (PyTorch) must be installed.
 ```
 
-### Code to call CPU working
+> **Tip:** If you want GPU acceleration, install PyTorch with CUDA support.
+
+---
+
+## 2. 📂 Project Setup
+
+You should have:
+- A **trained YOLOv8 model** (`best.pt` or similar).
+- A **video file** (e.g., `.mp4`, `.mov`) you want to analyze.
+
+Paths used in the code:
+```python
+model_path = "/content/drive/MyDrive/Colab Notebooks/OS project/runs/detect/train/weights/best.pt"
+video_path = "/content/drive/MyDrive/Colab Notebooks/OS project/J fall.MOV"
+```
+
+> **Make sure** to adjust the paths to your own files if different.
+
+---
+
+## 3. 📜 Step-by-Step Code Explanation
+
+### Step 1: Import Libraries
+```python
+import cv2, torch, psutil, time, csv
+from datetime import datetime
+from ultralytics import YOLO
+```
+- `cv2` for video reading.
+- `torch` for model loading and device handling.
+- `psutil` to monitor CPU and RAM.
+- `csv` and `datetime` to log results into a file.
+
+---
+
+### Step 2: Load the YOLOv8 Model
+```python
+model = YOLO(model_path)
+```
+Loads your trained YOLOv8 model into memory.
+
+---
+
+### Step 3: Define the `run_yolo_on_video` Function
+
+This function processes the video, frame by frame.
+
+Parameters:
+- `device_str`: `"cpu"` or `"GPU"`.
+- `max_frames`: maximum number of frames to analyze.
+
+---
+
+Inside the function:
+
+#### a) Set Device
+```python
+device = device_str if device_str == "cpu" else 0
+```
+- `"cpu"` keeps it on CPU.
+- Anything else (like `"GPU"`) moves processing to CUDA GPU device `0`.
+
+---
+
+#### b) Open Video
+```python
+cap = cv2.VideoCapture(video_path)
+```
+Reads video file frame-by-frame.
+
+---
+
+#### c) Create a CSV File for Logging
+```python
+csv_filename = f"stats_{device_str}_{timestamp}.csv"
+```
+The script automatically saves a new CSV with the device name and timestamp in the filename.
+
+---
+
+#### d) Process Video Frames
+While frames are available **and** `frame_count < max_frames`:
+
+1. **Read frame**
+   ```python
+   ret, frame = cap.read()
+   ```
+
+2. **(Optional) Grayscale Optimization**  
+   (commented out but available for future use):
+   ```python
+   gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+   rgb_frame = cv2.merge([gray, gray, gray])
+   ```
+   ✅ This would **reduce memory and speed up processing** if uncommented.
+
+3. **Convert to RGB**  
+   (YOLO expects RGB input):
+   ```python
+   rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+   ```
+
+4. **Run YOLOv8 prediction**
+   ```python
+   _ = model.predict(rgb_frame, device=device, verbose=False)
+   ```
+
+5. **Measure system performance**
+   ```python
+   cpu = psutil.cpu_percent()
+   ram = psutil.virtual_memory().percent
+   fps = 1 / (time.time() - start)
+   gpu_mem = torch.cuda.memory_allocated() / 1024**2 if torch.cuda.is_available() else 0
+   ```
+
+6. **Write data to CSV**
+   ```python
+   writer.writerow([frame_count + 1, round(fps, 2), cpu, ram, round(gpu_mem, 2)])
+   ```
+
+---
+
+#### e) Close Everything
+```python
+cap.release()
+```
+Releases the video file after all frames are processed.
+
+---
+
+### Step 4: Run Inference on CPU and GPU
+** Don't forget to change the Runtime type**
+**Click Runtime > Change runtime type > CPU**
 ```python
 cpu_csv = run_yolo_on_video("cpu", max_frames=100)
 files.download(cpu_csv)
 ```
-
-### Code to call GPU working
-##### Click Runtime > Change runtime type > GPU
+**Click Runtime > Change runtime type > GPU**
 ```python
 gpu_csv = run_yolo_on_video("GPU", max_frames=100)
 files.download(gpu_csv)
 ```
-
 ### Output
 - Two CSV files:
   - `stats_cpu_YYYYMMDD_HHMMSS.csv`
