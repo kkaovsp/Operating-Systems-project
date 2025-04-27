@@ -263,8 +263,8 @@ You should have:
 
 Paths used in the code:
 ```python
-model_path = "/content/drive/MyDrive/Colab Notebooks/OS project/runs/detect/train/weights/best.pt"
-video_path = "/content/drive/MyDrive/Colab Notebooks/OS project/J fall.MOV"
+model_path = "best.pt" #YOLO Model
+video_path = "J fall.MOV" #Any VDO for testing
 ```
 
 > **Make sure** to adjust the paths to your own files if different.
